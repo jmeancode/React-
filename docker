@@ -1,0 +1,65 @@
+# 1. docker
+## 1. docker란
+### 1. docker란 컨테이너 기반의 가상화 플랫폼. 클라우드 서버의 관리나 CI/CD, DevOps 등의 기술을 편리하게 사용할 수 있게 해준다.
+### 2. docker의 컨테이너: 설정파일이나 개발환경, 또는 특정 프로그램이나 툴이 설치된 상태를 그대로 실행할 수 있는 상자. 
+### 3. docker에서는 설정파일 또는 개발환경, 프로그램, 툴 등을 이미지로 저장을 하거나 불러와서 바로 컨테이너화 시킬 수 있다. 
+### 4. docker 설치
+- sudo apt-get update
+- sudo apt-get install curl
+- curl https://get.docker.com > docker-install.sh
+- chmod 755 docker-install.sh
+- sudo ./docker-install.sh or sudo sh docker-install.sh
+
+## 2. docker 명령어
+### 1. 도커 시작/종료
+- 도커 엔진 시작: sudo systemctl start docker
+- 도커 엔진 종료: sudo systemctl stop docker
+- 자동 실행 설정: sudo systemctl enable docker
+- 도커 버전 확인: docker -v
+### 2. 도커 조작 명령어 구조
+- docker [상위커맨드] [하위커맨드] 옵션
+- 상위커맨드: container, image, volume, network
+- 하위커맨드와 옵션은 상위커맨드에 따라 달라지기 때문에 같이 설명
+### 3. 컨테이너 명령어
+- docker container [하위커맨드] 옵션
+- 하위커맨드
+    - start: 컨테이너 실행
+    - stop: 컨터이너 종료
+    - create: 이미지로부터 컨테이너 생성
+    - run: 이미지를 다운받아서 컨테이너를 생성하고 컨테이너를 실행. docker image pull(이미지 다운), docker container create(컨테이너 생성), docker container start(컨테이너 실행) 세 개의 명령어가 하나로 합쳐진 형태의 명령어
+    - exec: 실행중인 컨테이너 속에 접속하거나 프로그램을 실행
+    - ls: 컨테이너의 목록 표출
+    - cp: 컨테이너와 도커간의 파일 복사
+    - commit: 현재 컨테이너를 이미지로 변환
+### 4. 이미지 명령어
+- docker image [하위커맨드] 옵션
+- 하위커맨드
+    - pull: 도커 허브등의 리포지토리에서 이미지 내려받기
+    - rm: 이미지 삭제
+    - ls: 이미지 목록 표출
+    - build: 도커 이미지 생성
+### 5. 볼륨 명령어
+- docker volume [하위커맨드] 옵션
+- 하위커맨드
+    - create: 볼륨(저장소)을 생성
+    - inspect: 볼륨 상세 정보 표출
+    - ls: 볼륨 목록 표출
+    - prune: 현재 마운트되지 않아서 사용되지 않는 볼륨 모두 삭제
+    - rm: 지정한 볼륨 삭제
+### 6. 네트워크 명령어
+- docker network [하위커맨드] 옵션
+- 하위커맨드
+    - connect: 컨테이너를 도커 네트워크에 연결
+    - disconnect: 컨테이너를 도커 네트워크에서 해제
+    - create: 도커 네트워크 생성
+    - inspect: 도커 네트워크 상세 정보 표출
+    - ls: 도커 네트워크 목록 표출
+    - prune: 현재 컨테이너가 연결되어 있지 않은 모든 네트워크 삭제
+    - rm: 지정한 네트워크 삭제
+### 7. docker run 명령어 옵션
+- --name: 컨테이너의 이름 지정
+- -d: 백그라운드 실행
+- -p: 포트번호 지정(인바운드포트번호:컨테이너의 포트번호)
+- --net: 연결할 도커 네트워크 지정
+- -e: 환경변수 지정
+- -v: 볼륨이름(도커의 경로명):컨테이너 마운트 경로
